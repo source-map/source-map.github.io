@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Source Maps</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Frequently Asked Questions</h1>
+        </header>
+
+        <hr/>
+
+        <section>
+          <h2>Table of Contents</h2>
+          <ul>
+            <li>
+              <a href="#faq1">How do I combined source maps for concatenated
+              files?</a>
+            </li>
+            <li>
+              <a href="#faq2">How can I modify the compiled output without
+              corrupting the source map?</a>
+            </li>
+            <li>
+              <a href="#faq3">Can source maps be completely self contained in
+              the generated source?</a>
+            </li>
+          </ul>
+        </section>
+
+        <hr/>
+
+        <section id="main_content">
+
+          <h3 id="faq1">How do I combined source maps for concatenated files?</h3>
+
+          <p>
+            Build an index map that refers to the individual pieces. See the
+            spec for details of a index map.
+          </p>
+
+          <h3 id="faq2">How can I modify the compiled output without corrupting
+          the source map?</h3>
+
+          <p>
+            For simple modifications such as adding a version or comment, if you
+            can isolate the change into a line by itself, you can modify that
+            line without affecting any other line.  This is possible because the
+            source maps are line/column based.  This also means that you can
+            append text to the end of the file without modifying the source map.
+          </p>
+
+          <p>
+            You can add an entire block of text the the beginning of the file by
+            creating a simple index map see <a href="#faq1">How do I combined source
+            maps for concatenated files?</a>
+          </p>
+
+          <h3 id="faq3">Can source maps be completely self contained in the
+          generated source?</h3>
+
+          <p>
+            Yes. Store the text content of your sources in
+            the <code>sourcesContent</code> property of your source map, and
+            then embed your source map into your generated source by using a
+            <code>data://</code> URI in the <code>//#
+            sourceMappingURL=...</code> comment pragma.
+          </p>
+
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
